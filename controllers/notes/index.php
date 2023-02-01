@@ -1,11 +1,10 @@
 <?php
 
+use Core\classes\App;
 use Core\classes\Database;
 
-$config = require basePath("config.php");
-$credentials = $config['credentials'];
+$db = App::resolve(Database::class);
 
-$db = new Database($config['database'], $credentials['username'], $credentials['password']);
 $heading = 'My Notes';
 
 $query = "select * from notes where userId = 5";

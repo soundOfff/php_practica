@@ -8,6 +8,16 @@
     <h1 class="text-3xl font-bold text-gray-800"><?= $note['title'] ?></h1>
     <p class="text-gray-600 font-semibold text-lg"><?= $note['body'] ?></p>
     <a href="/notes">Go back...</a>
+
+
+    <form method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="hidden" name="id" value="<?= $note['id'] ?>">
+      <button href="" class="bg-red-600 rounded p-2 w-fit text-white hover:bg-red-500">
+        Delete the note!
+      </button>
+    </form>
+
   </div>
 </main>
 <?php require basePath('views/partials/footer.php') ?>

@@ -11,16 +11,15 @@ spl_autoload_register(function ($class) {
     require basePath("{$class}.php");
 });
 
-require basePath('Core/router.php');
+require basePath('bootstrap.php');
 
-// Connect MySql db
+$router = new \Core\classes\Router();
 
+$routes = require basePath('routes.php');
 
-// $db = new Database($config['database'], $credentials['username'], $credentials['password']);
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
-// $id = $_GET['id'];
-// $query = "select * from posts where id_posts = :id"; // could be ? instead of :id
+// This is for the delete func works like isset() and a ternary
+$method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
-// $posts = $db->query($query, [':id' => $id])->fetch();
-
-// dd($posts);
+$router->route($uri, $method);
